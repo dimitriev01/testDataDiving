@@ -1,0 +1,293 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint"
+    ],
+    "extends": [
+        "plugin:import/warnings",
+        "plugin:import/typescript",
+        "plugin:boundaries/recommended",
+        "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "prettier"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "settings": {
+        "react": {
+            "version": "detect"
+        },
+        "import/resolver": {
+            "typescript": {}
+        },
+        "boundaries/elements": [
+            {
+                "type": "app",
+                "pattern": "app/*"
+            },
+            {
+                "type": "processes",
+                "pattern": "processes/*"
+            },
+            {
+                "type": "pages",
+                "pattern": "pages/*"
+            },
+            {
+                "type": "widgets",
+                "pattern": "widgets/*"
+            },
+            {
+                "type": "features",
+                "pattern": "features/*"
+            },
+            {
+                "type": "entities",
+                "pattern": "entities/*"
+            },
+            {
+                "type": "shared",
+                "pattern": "shared/*"
+            }
+        ],
+        "boundaries/ignore": [
+            "**/*.test.*"
+        ]
+    },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+    },
+    "rules": {
+        "no-use-before-define": "off",
+        "import/prefer-default-export": "off",
+        "react/jsx-props-no-spreading": "off",
+        "react/react-in-jsx-scope": "off",
+        "jsx-a11y/interactive-supports-focus": "off",
+        "jsx-a11y/click-events-have-key-events": "off",
+        "jsx-a11y/control-has-associated-label": "off",
+        "import/no-named-as-default": "off",
+        "react/display-name": "off",
+        "@typescript-eslint/no-use-before-define": [
+            "error",
+            {
+                "variables": false
+            }
+        ],
+        "react/function-component-definition": [
+            "error",
+            {
+                "namedComponents": "arrow-function",
+                "unnamedComponents": "arrow-function",
+                "default": "arrow-function"
+            }
+        ],
+        "react/require-default-props": "off",
+        "@typescript-eslint/no-unused-vars": [
+            // ignore validation variable with prefix _
+            "warn",
+            {
+                "argsIgnorePattern": "^_",
+                "varsIgnorePattern": "^_",
+                "caughtErrorsIgnorePattern": "^_"
+            }
+        ],
+        "import/order": [
+            "error",
+            {
+                "alphabetize": {
+                    "caseInsensitive": true
+                },
+                "newlines-between": "never",
+                "pathGroups": [
+                    {
+                        "group": "internal",
+                        "position": "after",
+                        "pattern": "processes/**"
+                    },
+                    {
+                        "group": "internal",
+                        "position": "after",
+                        "pattern": "pages/**"
+                    },
+                    {
+                        "group": "internal",
+                        "position": "after",
+                        "pattern": "widgets/**"
+                    },
+                    {
+                        "group": "internal",
+                        "position": "after",
+                        "pattern": "features/**"
+                    },
+                    {
+                        "group": "internal",
+                        "position": "after",
+                        "pattern": "entities/**"
+                    },
+                    {
+                        "group": "internal",
+                        "position": "after",
+                        "pattern": "shared/**"
+                    }
+                ],
+                "pathGroupsExcludedImportTypes": [
+                    "builtin",
+                    "react"
+                ],
+                "groups": [
+                    "builtin",
+                    "external",
+                    "internal",
+                    "parent",
+                    "sibling",
+                    "index"
+                ]
+            }
+        ],
+        "no-restricted-imports": [
+            "error",
+            {
+                "patterns": [
+                    {
+                        "message": "Private imports are prohibited, use public imports instead",
+                        "group": [
+                            "app/*/**"
+                        ]
+                    },
+                    {
+                        "message": "Private imports are prohibited, use public imports instead",
+                        "group": [
+                            "processes/*/**"
+                        ]
+                    },
+                    {
+                        "message": "Private imports are prohibited, use public imports instead",
+                        "group": [
+                            "pages/*/**"
+                        ]
+                    },
+                    {
+                        "message": "Private imports are prohibited, use public imports instead",
+                        "group": [
+                            "widgets/*/**"
+                        ]
+                    },
+                    {
+                        "message": "Private imports are prohibited, use public imports instead",
+                        "group": [
+                            "features/*/**"
+                        ]
+                    },
+                    {
+                        "message": "Private imports are prohibited, use public imports instead",
+                        "group": [
+                            "entities/*/**"
+                        ]
+                    },
+                    {
+                        "message": "Private imports are prohibited, use public imports instead",
+                        "group": [
+                            "shared/ui/*/**"
+                        ]
+                    },
+                    {
+                        "message": "Private imports are prohibited, use public imports instead",
+                        "group": [
+                            "shared/config/**"
+                        ]
+                    },
+                    {
+                        "message": "Private imports are prohibited, use public imports instead",
+                        "group": [
+                            "shared/api/**"
+                        ]
+                    }
+                ]
+            }
+        ],
+        "boundaries/element-types": [
+            "error",
+            {
+                "default": "disallow",
+                "rules": [
+                    {
+                        "from": "app",
+                        "allow": [
+                            "processes",
+                            "pages",
+                            "widgets",
+                            "features",
+                            "entities",
+                            "shared"
+                        ]
+                    },
+                    {
+                        "from": "processes",
+                        "allow": [
+                            "pages",
+                            "widgets",
+                            "features",
+                            "entities",
+                            "shared"
+                        ]
+                    },
+                    {
+                        "from": "pages",
+                        "allow": [
+                            "widgets",
+                            "features",
+                            "entities",
+                            "shared"
+                        ]
+                    },
+                    {
+                        "from": "widgets",
+                        "allow": [
+                            "features",
+                            "entities",
+                            "shared"
+                        ]
+                    },
+                    {
+                        "from": "features",
+                        "allow": [
+                            "entities",
+                            "shared"
+                        ]
+                    },
+                    {
+                        "from": "entities",
+                        "allow": [
+                            "shared"
+                        ]
+                    },
+                    {
+                        "from": "shared",
+                        "allow": [
+                            "shared"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "overrides": [
+        {
+            "files": [
+                "**/*.test.*"
+            ],
+            "rules": {
+                "boundaries/element-types": "off"
+            }
+        }
+    ]
+}

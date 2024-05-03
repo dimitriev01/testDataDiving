@@ -1,0 +1,15 @@
+@import './reset.scss';
+@import './variables.scss';
+@import './device-sizes.scss';
+@import './tailwind.scss';
+
+.App {
+  padding: 20px;
+
+  @media (max-width: $device-tablet) {
+    padding: 15px;
+  }
+  @media (max-width: $device-mobileL) {
+    padding: 8px;
+  }
+}
