@@ -1,15 +1,16 @@
-import { ToolTip } from '../shared/ui/tooltip';
-import '../shared/styles/index.scss'
-
+import { Suspense } from 'react';
+import { Router, RouterProvider } from '../shared/lib/routes';
+import { pages } from '../pages';
+import { Layout } from '../widgets/layout';
 export const App = () => {
   return (
-    <div className={'App'}>
-      <ToolTip
-        title={'wubba lubba dub dub'}
-        text={'chipi chipi chapa chapa'}
-        delay={100}
-      />
-    </div>
+    <RouterProvider>
+      <Layout>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Router pages={pages} />
+        </Suspense>
+      </Layout>
+    </RouterProvider >
   );
 }
 

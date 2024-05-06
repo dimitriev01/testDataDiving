@@ -1,9 +1,7 @@
-@import './reset.scss';
-@import './variables.scss';
-@import './device-sizes.scss';
-@import './tailwind.scss';
+@import '/src/shared/styles/device-sizes.scss';
 
-.App {
+.layout {
+  height: 100%;
   padding: 20px;
 
   @media (max-width: $device-tablet) {
