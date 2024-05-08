@@ -1,7 +1,9 @@
 import { Suspense } from 'react';
-import { Router, RouterProvider } from '../shared/lib/routes';
-import { pages } from '../pages';
-import { Layout } from '../widgets/layout';
+import { Layout } from 'src/widgets/layout';
+import { Router } from 'src/shared/lib/routes';
+import { pages } from 'src/pages';
+import { RouterProvider } from './providers';
+
 export const App = () => {
   return (
     <RouterProvider>
@@ -10,7 +12,7 @@ export const App = () => {
           <Router pages={pages} />
         </Suspense>
       </Layout>
-    </RouterProvider >
+    </RouterProvider>
   );
 }
 

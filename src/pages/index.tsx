@@ -1,7 +1,7 @@
 import { ReactNode } from "react"
 import { EnumRoutesName, routes } from "../shared/lib/routes"
-import { Main } from "./main"
-import { User } from "./user"
+import { MainPage } from "./main"
+import { UserPage } from "./user"
 
 export interface ICustomRouteProps {
   path: string
@@ -11,10 +11,10 @@ export interface ICustomRouteProps {
 export const pages: Record<EnumRoutesName, ICustomRouteProps> = {
   [EnumRoutesName.MAIN]: {
     path: routes.main,
-    element: <Main />,
+    element: <MainPage />,
   },
   [EnumRoutesName.USER]: {
     path: routes.user,
-    element: <User />,
+    element: <UserPage />,
   },
 }

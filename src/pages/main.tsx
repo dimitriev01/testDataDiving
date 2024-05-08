@@ -1,5 +1,12 @@
-export const Main = () => {
-  return (<div>
-    Main
-  </div>)
+
+import { UserCards } from "src/features/user-cards";
+import { UserForm } from "src/features/user-form";
+
+export const MainPage = () => {
+  return (
+    <>
+      <UserCards />
+      <UserForm />
+    </>
+  )
 }
