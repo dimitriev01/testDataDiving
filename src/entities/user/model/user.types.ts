@@ -11,4 +11,6 @@ export interface IUser {
 
 export interface IUserStore {
   users: IUser[];
+  user: IUser | null;
+  selectedIdUsers: string[];
 }

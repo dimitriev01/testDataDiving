@@ -1,21 +1,16 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { IAppStore } from './store.types';
+import { IModalStore } from './modal.types';
 
-const initialState: IAppStore = {
+const initialState: IModalStore = {
   modalCreationUser: false,
   modalConfirmDeleteUser: false,
   modalEditionUser: false,
 };
 
-export const appSlice = createSlice({
-  name: 'appSlice',
+export const modalSlice = createSlice({
+  name: 'modalSlice',
   initialState,
   reducers: {
-    resetModals: (state) => {
-      state.modalConfirmDeleteUser = false;
-      state.modalCreationUser = false;
-      state.modalEditionUser = false;
-    },
     changeModalCreationUser: (state, action: PayloadAction<boolean>) => {
       state.modalCreationUser = action.payload;
     },
@@ -28,7 +23,6 @@ export const appSlice = createSlice({
   },
 });
 
-export const { resetModals, changeModalConfirmDeleteUser, changeModalCreationUser, changeModalEditionUser } =
-  appSlice.actions;
+export const { changeModalConfirmDeleteUser, changeModalCreationUser, changeModalEditionUser } = modalSlice.actions;
 
-export default appSlice.reducer;
+export default modalSlice.reducer;

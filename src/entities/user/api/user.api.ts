@@ -1,12 +1,11 @@
-import { createApi } from '@reduxjs/toolkit/query/react';
-import { BaseQueryInterceptor } from 'src/shared/api/query';
-import { IUser } from '../../../entities/user';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { IUser } from '../model/user.types';
 
 // export const BASE_URL = 'https://cataas.com';
 
 export const userAPI = createApi({
   reducerPath: 'userAPI',
-  baseQuery: BaseQueryInterceptor,
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001' }),
   tagTypes: ['User'],
   endpoints: (build) => ({
     getUsers: build.query<IUser[], void>({
@@ -14,12 +13,8 @@ export const userAPI = createApi({
         url: '/users',
         method: 'GET',
       }),
-    }),
-    getUser: build.query<IUser, string>({
-      query: (id) => ({
-        url: `/users/${id}`,
-        method: 'GET',
-      }),
+      transformResponse: (response: IUser[]) =>
+        response.sort((a, b) => new Date(a.creationDate).getTime() - new Date(b.creationDate).getTime()),
     }),
     createUser: build.mutation<IUser, IUser>({
       query: (user) => ({
@@ -31,4 +26,4 @@ export const userAPI = createApi({
   }),
 });
 
-export const { useGetUsersQuery, useGetUserQuery, useCreateUserMutation } = userAPI;
+export const { useGetUsersQuery, useCreateUserMutation } = userAPI;
