@@ -16,9 +16,11 @@ export const userSlice = createSlice({
       state.user = null;
     },
     addSelectedUserId: (state, action: PayloadAction<string>) => {
-      const idAlreadySelected = state.selectedIdUsers.includes(action.payload);
-      if (!idAlreadySelected) {
-        state.selectedIdUsers = [...state.selectedIdUsers, action.payload];
+      const userId = action.payload;
+      if (state.selectedIdUsers.includes(userId)) {
+        state.selectedIdUsers = state.selectedIdUsers.filter((id) => id !== userId);
+      } else {
+        state.selectedIdUsers.push(userId);
       }
     },
   },
@@ -29,7 +31,10 @@ export const userSlice = createSlice({
         state.users = action.payload;
       })
       .addMatcher(userAPI.endpoints.createUser.matchFulfilled, (state, action: PayloadAction<IUser>) => {
-        state.users = [...state.users, action.payload];
+        state.users.push(action.payload);
+      })
+      .addMatcher(userAPI.endpoints.deleteUser.matchFulfilled, (state) => {
+        state.users = state.users.filter((user) => !state.selectedIdUsers.includes(user.id));
       });
   },
 });

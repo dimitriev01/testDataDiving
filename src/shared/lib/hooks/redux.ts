@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+// исключение в рамках FSD
 // eslint-disable-next-line boundaries/element-types
 import { AppDispatch, RootState } from 'src/app/store';
 

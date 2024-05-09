@@ -1,21 +1,21 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { resetUser, } from "src/entities/user";
-import { UserCard } from "src/features/user-cards/ui/user-card";
+import { UserCard } from "src/features/user-cards";
 import { useAppDispatch, useAppSelector } from "src/shared/lib/hooks";
-import { Modal, changeModalEditionUser, changeModalConfirmDeleteUser } from "src/shared/ui/modal"
+import { Modal, changeModalConfirmDeleteUser, changeModalEditionUser } from "src/shared/ui/modal";
 
 export const UserPage = () => {
   const dispatch = useAppDispatch();
   const modals = useAppSelector((state) => state.modalReducer)
-  const { user } = useAppSelector(state => state.userReducer);
+  const { user, } = useAppSelector((state) => state.userReducer);
 
-  const changeVisibleModalEditionUser = (isOpened: boolean) => {
+  const changeVisibleModalEditionUser = useCallback((isOpened: boolean) => {
     dispatch(changeModalEditionUser(isOpened))
-  }
+  }, [dispatch])
 
-  const changeVisibleModalDeleteUser = (isOpened: boolean) => {
+  const changeVisibleModalDeleteUser = useCallback((isOpened: boolean) => {
     dispatch(changeModalConfirmDeleteUser(isOpened))
-  }
+  }, [dispatch])
 
   useEffect(() => {
     return () => {
@@ -28,11 +28,11 @@ export const UserPage = () => {
       {user &&
         <UserCard user={user} />
       }
-      <Modal isOpened={modals.modalEditionUser} setShowModal={changeVisibleModalEditionUser} title={'Edition user'}>
+      <Modal isOpened={modals.modalEditionUser} setShowModal={() => changeVisibleModalEditionUser(modals.modalEditionUser)} title={'Edition user'}>
         modalEditionUser
       </Modal>
-      <Modal isOpened={modals.modalConfirmDeleteUser} setShowModal={changeVisibleModalDeleteUser} title={'Confirm delele user'}>
-        modalEditionUser
+      <Modal isOpened={modals.modalConfirmDeleteUser} setShowModal={() => changeVisibleModalDeleteUser(modals.modalConfirmDeleteUser)} title={'Confirm delele user'}>
+        modalConfirmDeleteUser
       </Modal>
     </>
   )

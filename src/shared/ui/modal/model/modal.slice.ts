@@ -5,6 +5,7 @@ const initialState: IModalStore = {
   modalCreationUser: false,
   modalConfirmDeleteUser: false,
   modalEditionUser: false,
+  modalEditionAvatar: false,
 };
 
 export const modalSlice = createSlice({
@@ -20,9 +21,17 @@ export const modalSlice = createSlice({
     changeModalEditionUser: (state, action: PayloadAction<boolean>) => {
       state.modalEditionUser = action.payload;
     },
+    changeModalEditionAvatar: (state, action: PayloadAction<boolean>) => {
+      state.modalEditionAvatar = action.payload;
+    },
   },
 });
 
-export const { changeModalConfirmDeleteUser, changeModalCreationUser, changeModalEditionUser } = modalSlice.actions;
+export const {
+  changeModalConfirmDeleteUser,
+  changeModalCreationUser,
+  changeModalEditionUser,
+  changeModalEditionAvatar,
+} = modalSlice.actions;
 
 export default modalSlice.reducer;

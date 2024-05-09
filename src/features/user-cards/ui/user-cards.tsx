@@ -1,8 +1,10 @@
 import { useGetUsersQuery } from "src/entities/user"
+import { useAppSelector } from "src/shared/lib/hooks";
 import { UserCard } from "./user-card";
 
 export const UserCards = () => {
-  const { data: users, isLoading: isLoadingUsers, isError: isErrorLoadingUsers } = useGetUsersQuery();
+  const { isLoading: isLoadingUsers, isError: isErrorLoadingUsers } = useGetUsersQuery();
+  const { users } = useAppSelector((state) => state.userReducer)
 
   if (isErrorLoadingUsers) {
     return <div>Error loading users!</div>
