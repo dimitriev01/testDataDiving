@@ -1,12 +1,6 @@
-import { ReactNode } from "react"
-import { EnumRoutesName, routes } from "../shared/lib/routes"
+import { EnumRoutesName, ICustomRouteProps, routes } from "../shared/lib/routes"
 import { MainPage } from "./main"
 import { UserPage } from "./user"
-
-export interface ICustomRouteProps {
-  path: string
-  element: ReactNode
-}
 
 export const pages: Record<EnumRoutesName, ICustomRouteProps> = {
   [EnumRoutesName.MAIN]: {

@@ -12,7 +12,7 @@ interface IButtonProps {
 export const Button = (props: IButtonProps) => {
   const { isDisalbed, children, type = 'button', onClick, className } = props;
   return (
-    <button type={type} disabled={isDisalbed} className={clsx(className, "p-2 bg-blue-500 text-white rounded-md")} onClick={onClick}>
+    <button type={type} disabled={isDisalbed} className={clsx(className, "p-2 bg-blue-500 text-white rounded-md max-w-40")} onClick={onClick}>
       {children}
     </button>
   )

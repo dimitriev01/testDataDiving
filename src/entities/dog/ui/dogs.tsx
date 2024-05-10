@@ -35,9 +35,9 @@ export const Dogs = (props: IAvatarSelectorProps) => {
   })
 
   return (
-    <ul className="flex flex-wrap space-x-4 space-y-4 justify-between aling-center">
-      {imagesWithCurrExpansion.slice(0, 10).map((src: string) =>
-        <li key={src} className="w-20">
+    <ul className="grid grid-cols-[repeat(auto-fill,_minmax(100px,_1fr))] gap-5">
+      {imagesWithCurrExpansion.slice(0, 50).map((src) =>
+        <li key={src}>
           <img className="cursor-pointer" src={`${dogAPIUrl}/${src}`} alt={`src-image-${src}`} onClick={() => changeAvatarHandler(src)} />
         </li>
       )}

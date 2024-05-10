@@ -12,10 +12,7 @@ export const userSlice = createSlice({
   name: 'userSlice',
   initialState,
   reducers: {
-    resetUser: (state) => {
-      state.user = null;
-    },
-    addSelectedUserId: (state, action: PayloadAction<string>) => {
+    addSelectedUsersId: (state, action: PayloadAction<string>) => {
       const userId = action.payload;
       if (state.selectedIdUsers.includes(userId)) {
         state.selectedIdUsers = state.selectedIdUsers.filter((id) => id !== userId);
@@ -23,21 +20,33 @@ export const userSlice = createSlice({
         state.selectedIdUsers.push(userId);
       }
     },
+    setUser: (state, action: PayloadAction<IUser | null>) => {
+      state.user = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
       // matchFulfilled
       .addMatcher(userAPI.endpoints.getUsers.matchFulfilled, (state, action: PayloadAction<IUser[]>) => {
-        state.users = action.payload;
+        state.users = action.payload.sort(
+          (a, b) => new Date(a.creationDate).getTime() - new Date(b.creationDate).getTime(),
+        );
       })
       .addMatcher(userAPI.endpoints.createUser.matchFulfilled, (state, action: PayloadAction<IUser>) => {
         state.users.push(action.payload);
       })
-      .addMatcher(userAPI.endpoints.deleteUser.matchFulfilled, (state) => {
+      .addMatcher(userAPI.endpoints.deleteUser.matchFulfilled, (state, action: PayloadAction<IUser>) => {
+        state.users = state.users.filter((user) => user.id !== action.payload.id);
+      })
+      .addMatcher(userAPI.endpoints.deleteUsers.matchFulfilled, (state) => {
         state.users = state.users.filter((user) => !state.selectedIdUsers.includes(user.id));
+      })
+      .addMatcher(userAPI.endpoints.changeUserInfo.matchFulfilled, (state, action: PayloadAction<IUser>) => {
+        console.log(action.payload);
+        state.users = state.users.map((user) => (user.id === action.payload.id ? action.payload : user));
       });
   },
 });
-export const { resetUser, addSelectedUserId } = userSlice.actions;
+export const { setUser, addSelectedUsersId } = userSlice.actions;
 
 export default userSlice.reducer;

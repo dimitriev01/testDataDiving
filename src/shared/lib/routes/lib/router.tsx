@@ -1,24 +1,26 @@
 import { Navigate, Route, Routes } from "react-router-dom"
 import { EnumRoutesName, routes } from "../model/routes"
-import { ICustomRouteProps } from "../../../../pages"
+import { ICustomRouteProps } from "../model/routes.types"
 
 interface IRouterProps {
   pages: Record<EnumRoutesName, ICustomRouteProps>
 }
 
 export const Router = (props: IRouterProps) => {
-  const { pages } = props
+  const { pages } = props;
 
   return (
     <Routes>
-      {Object.values(pages).map(page => (
-        <Route key={`route_${page.path}`} path={page.path} element={page.element} />
-      ))}
+      {Object.values(pages).map(page => {
+        return (
+          <Route key={`route_${page.path}`} path={page.path} element={page.element} />
+        );
+      })}
       <Route
         key={`route_default`}
         path="*"
         element={<Navigate to={routes.main} />}
       />
     </Routes>
-  )
+  );
 }

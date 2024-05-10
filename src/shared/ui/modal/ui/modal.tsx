@@ -38,8 +38,10 @@ export const Modal = (props: IModalProps) => {
   }
 
   return createPortal(
-    <div className="fixed p-5 top-0 left-0 w-full h-full flex items-center justify-center bg-gray-900/50">
-      <div className="modal bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+    <div className="fixed p-5 inset-0 w-full h-full flex items-center justify-center bg-gray-900/50 ">
+      <div className="flex flex-col justify-center modal bg-white p-6 rounded-lg shadow-lg w-full overflow-x-hidden overflow-y-auto " style={{
+        maxHeight: '80vh', maxWidth: '600px'
+      }}>
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-lg font-semibold">{title}</h2>
           <button
