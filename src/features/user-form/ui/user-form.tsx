@@ -61,11 +61,11 @@ export const UserForm = () => {
     }
   }, [handleAvatarSelect, isMainPage, user?.avatar])
 
-  // useEffect(() => {
-  //   return () => {
-  //     dispatch(changeModalEditionAvatar(false))
-  //   }
-  // }, [dispatch])
+  useEffect(() => {
+    return () => {
+      dispatch(changeModalEditionAvatar(false))
+    }
+  }, [dispatch])
 
   return (
     <>
