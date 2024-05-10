@@ -14,7 +14,7 @@ export const UserPage = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const modals = useAppSelector((state) => state.modalReducer)
-  const { } = useGetUsersQuery();
+  const { isLoading: isLoadingUsers } = useGetUsersQuery();
   const { users, user } = useAppSelector((state) => state.userReducer);
   const [deleteUser, { isLoading: isLoadingDeletingUser }] = useDeleteUserMutation();
   const hasUser = users.find((user) => user.id === id);
@@ -40,7 +40,7 @@ export const UserPage = () => {
     }
   }, [dispatch, hasUser]);
 
-  if (!hasUser) {
+  if (!hasUser && !isLoadingUsers) {
     return <Navigate to={routes.main} />
   }
 
