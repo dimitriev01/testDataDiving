@@ -35,7 +35,7 @@ export const Dogs = (props: IAvatarSelectorProps) => {
   })
 
   return (
-    <ul className="grid grid-cols-[repeat(auto-fill,_minmax(100px,_1fr))] gap-5">
+    <ul className="grid grid-cols-[repeat(auto-fill,_minmax(6.25rem,_1fr))] gap-5 overflow-y-auto overflow-x-hidden">
       {imagesWithCurrExpansion.slice(0, 50).map((src) =>
         <li key={src}>
           <img className="cursor-pointer" src={`${dogAPIUrl}/${src}`} alt={`src-image-${src}`} onClick={() => changeAvatarHandler(src)} />

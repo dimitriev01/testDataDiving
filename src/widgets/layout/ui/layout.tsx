@@ -8,9 +8,9 @@ export const Layout = (props: ILayoutProps) => {
   const { children } = props;
 
   return (
-    <div className='p-5'>
+    <main className='p-5'>
       {children}
-    </div>
+    </main>
   )
 };
 

@@ -18,7 +18,7 @@ export const UserCard = (props: IUserCardProps) => {
   }
 
   return (
-    <div className="flex flex-col justify-between items-center space-x-4 rounded shadow-md p-5 gap-5">
+    <article className="flex flex-col justify-between items-center space-x-4 rounded shadow-md p-5 gap-5 h-full">
       <div>
         <div className="flex justify-center">
           <img
@@ -41,6 +41,6 @@ export const UserCard = (props: IUserCardProps) => {
           />
         }
       </div>
-    </div>
+    </article>
   );
 };

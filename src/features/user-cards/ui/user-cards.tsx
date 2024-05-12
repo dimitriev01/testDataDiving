@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useGetUsersQuery } from "src/entities/user"
 import { useAppSelector } from "src/shared/lib/hooks";
 import { Title } from "src/shared/ui/title";
+import { routes } from "src/shared/lib/routes";
 import { UserCard } from "./user-card";
 
 export const UserCards = () => {
@@ -21,18 +22,18 @@ export const UserCards = () => {
   }
 
   return (
-    <>
+    <section>
       <Title>User cards</Title>
-      <ul className="grid grid-cols-[repeat(auto-fill,_minmax(300px,_1fr))] gap-5">
+      <ul className="grid grid-cols-[repeat(auto-fill,_minmax(18.75rem,_1fr))] gap-5">
         {users.map((user) => (
-          <li key={user.id}>
-            <Link to={`/${user.id}`}>
+          <li key={user.id} className="h-full">
+            <Link to={`${routes.main}${user.id}`}>
               <UserCard user={user} />
             </Link>
           </li>
         ))}
       </ul>
-    </>
+    </section>
 
   )
 }

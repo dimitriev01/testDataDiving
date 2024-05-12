@@ -31,18 +31,18 @@ export const Modal = (props: IModalProps) => {
       document.removeEventListener('mousedown', handleOutsideClick);
       document.body.style.overflow = 'auto';
     };
-  }, [isOpened, setShowModal]);
+  }, [handleOutsideClick, isOpened, setShowModal]);
 
   if (!isOpened) {
     return null;
   }
 
   return createPortal(
-    <div className="fixed p-5 inset-0 w-full h-full flex items-center justify-center bg-gray-900/50 ">
-      <div className="flex flex-col justify-center modal bg-white p-6 rounded-lg shadow-lg w-full overflow-x-hidden overflow-y-auto " style={{
-        maxHeight: '80vh', maxWidth: '600px'
+    <div className="fixed p-5 inset-0 w-full h-full flex items-center justify-center bg-gray-900/50 overflow-hidden">
+      <div className="flex flex-col justify-center modal bg-white p-6 rounded-lg shadow-lg w-full overflow-x-hidden overflow-y-auto" style={{
+        maxHeight: '80vh', maxWidth: '56.25rem'
       }}>
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex justify-between items-center pb-4">
           <h2 className="text-lg font-semibold">{title}</h2>
           <button
             className="text-gray-600 hover:text-gray-900 focus:outline-none"

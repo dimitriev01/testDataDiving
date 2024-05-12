@@ -11,14 +11,14 @@
       "about_me": "Привет! Я Иван Иванович Иванов, мне 30 лет. Я программист и увлекаюсь фотографией."
     },
     {
-      "id": "2",
-      "creationDate": "2022-01-02T00:00:00Z",
       "avatar": "",
-      "firstName": "Петрова",
+      "firstName": "Петров",
       "middleName": "Анна",
-      "lastName": "Петровна",
-      "email": "anna.petrova@example.com",
-      "about_me": "Здравствуйте! Я Анна Петровна Петрова, мне 28 лет. Я дизайнер и люблю путешествовать."
+      "lastName": "",
+      "email": "anna.petrova1@example.com",
+      "about": "",
+      "creationDate": "2022-01-02T00:00:00Z",
+      "id": "2"
     },
     {
       "id": "3",
@@ -69,6 +69,26 @@
       "email": "dimitriev01@list.r",
       "about": "",
       "creationDate": "2024-05-07T14:58:41.643Z"
+    },
+    {
+      "id": "2e943cb6-3848-42b3-8905-1bd2b0ed7942",
+      "avatar": "",
+      "firstName": "11",
+      "middleName": "11",
+      "lastName": "11",
+      "email": "dimitriev01@list.ru1",
+      "about": "",
+      "creationDate": "2024-05-12T10:25:51.314Z"
+    },
+    {
+      "id": "fd1b31c1-9c06-4bc2-9961-ae212326d6a7",
+      "avatar": "",
+      "firstName": "11",
+      "middleName": "11",
+      "lastName": "11",
+      "email": "dimitriev01@list.u",
+      "about": "",
+      "creationDate": "2024-05-12T10:26:56.678Z"
     }
   ]
 }

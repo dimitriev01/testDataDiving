@@ -39,12 +39,19 @@ export const MainPage = () => {
         {selectedIdUsers.length ? (
           <Button onClick={() => changeVisibleModalConfirmDeleteUser(true)}>Delete users</Button>
         ) : null}
-        <ToolTip title={"Wubba Lubba Dub-Dub!"} text={"Some text"} delay={1000} />
-        <ToolTip title={"Wubba Lubba Dub-Dub! x2"} text={"Anything text"} delay={1000} />
+        <ToolTip title={"Point it at me"} text={"There was some kind of clue after 1s"} delay={1000} />
       </div>
       <UserCards />
       <Modal isOpened={modals.modalCreationUser} setShowModal={changeVisibleModalCreationUser} title={'Creation user'}>
-        <UserForm />
+        <UserForm initialState={{
+          avatar: '',
+          firstName: '',
+          middleName: '',
+          lastName: '',
+          email: '',
+          about: '',
+        }}
+        />
       </Modal>
       <Modal
         isOpened={modals.modalConfirmDeleteUser}

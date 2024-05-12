@@ -1,9 +1,9 @@
 import { useCallback, useEffect } from "react";
 import { Navigate, useParams, } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "src/shared/lib/hooks";
 import { setUser, useDeleteUserMutation, useGetUsersQuery, } from "src/entities/user";
 import { UserCard } from "src/features/user-cards";
 import { UserForm } from "src/features/user-form";
-import { useAppDispatch, useAppSelector } from "src/shared/lib/hooks";
 import { routes } from "src/shared/lib/routes";
 import { Button } from "src/shared/ui/button";
 import { FullName } from "src/shared/ui/full-name";
@@ -49,7 +49,7 @@ export const UserPage = () => {
   }
 
   return (
-    <>
+    <section>
       <Title>User detail</Title>
       <>
         <div className="mb-3 space-x-2">
@@ -64,7 +64,14 @@ export const UserPage = () => {
         setShowModal={changeVisibleModalEditionUser}
         title={'Edition user'}
       >
-        <UserForm />
+        <UserForm initialState={{
+          avatar: user.avatar,
+          firstName: user.firstName,
+          middleName: user.middleName,
+          lastName: user.lastName,
+          email: user.email,
+          about: user.about
+        }} />
       </Modal>
       <Modal
         isOpened={modals.modalConfirmDeleteUser}
@@ -75,6 +82,6 @@ export const UserPage = () => {
           <Button isDisalbed={isLoadingDeletingUser} onClick={() => onclickDeleteUser(user.id)}>Delete user</Button>
         </>
       </Modal>
-    </>
+    </section>
   )
 }

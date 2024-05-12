@@ -11,16 +11,20 @@ import { Dogs, dogAPIUrl, } from 'src/entities/dog';
 import { routes } from 'src/shared/lib/routes';
 import AvatarImg from '../assets/avatar.webp'
 
-const initialValues = {
-  avatar: '',
-  firstName: '',
-  middleName: '',
-  lastName: '',
-  email: '',
-  about: '',
+
+interface IUserFormProps {
+  initialState: {
+    avatar: string,
+    firstName: string,
+    middleName: string,
+    lastName: string,
+    email: string,
+    about: string
+  }
 }
 
-export const UserForm = () => {
+export const UserForm = (props: IUserFormProps) => {
+  const { initialState } = props;
   const [avatar, setAvatar] = useState('')
   const [createUser] = useCreateUserMutation();
   const [changeInfoUser] = useChangeUserInfoMutation();
@@ -71,21 +75,14 @@ export const UserForm = () => {
     <>
       <Formik
         enableReinitialize={true}
-        initialValues={isMainPage ? initialValues : {
-          avatar: user?.avatar || '',
-          firstName: user?.firstName || '',
-          middleName: user?.middleName || '',
-          lastName: user?.lastName || '',
-          email: user?.email || '',
-          about: user?.about || ''
-        }}
+        initialValues={initialState}
         validationSchema={validationSchema}
         onSubmit={(values, { setSubmitting, resetForm, }) => {
           if (isMainPage) {
             createUser({
               ...values,
-              creationDate: new Date(),
               avatar,
+              creationDate: new Date(),
               id: uuidv4(),
             })
               .then(() => {
@@ -98,8 +95,8 @@ export const UserForm = () => {
             if (user) {
               changeInfoUser({
                 ...values,
-                creationDate: new Date(),
                 avatar,
+                creationDate: user.creationDate,
                 id: user.id,
               })
                 .then(() => {
